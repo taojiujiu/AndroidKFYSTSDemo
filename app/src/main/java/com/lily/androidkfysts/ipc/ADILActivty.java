@@ -22,11 +22,16 @@ import com.lily.androidkfysts.R;
 public class ADILActivty extends Activity implements View.OnClickListener {
     private IBookManager iBookManager = null;
     private boolean isConnect = false;
-    private ServiceConnection serviceConnection = new ServiceConnection() {
+    private final ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             Log.e("tao", "service connected " + getLocalClassName());
             iBookManager = IBookManager.Stub.asInterface(service);
+            try {
+                iBookManager.asBinder().linkToDeath(deathRecipient,0);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
             try {
                 iBookManager.registerListener(iOnNewBookReceivedListener);
             } catch (RemoteException e) {
@@ -39,6 +44,8 @@ public class ADILActivty extends Activity implements View.OnClickListener {
         public void onServiceDisconnected(ComponentName name) {
             isConnect = false;
             iBookManager = null;
+            Log.e("tao", "………………………………………………………………onServiceDisconnected");
+
         }
     };
     public static final int MESSAGE_NEW_BOOK_ARRIVED = 1;
@@ -148,4 +155,15 @@ public class ADILActivty extends Activity implements View.OnClickListener {
         }
         unbindService(serviceConnection);
     }
+
+    private  IBinder.DeathRecipient deathRecipient = new IBinder.DeathRecipient() {
+        @Override
+        public void binderDied() {
+            if(iBookManager ==null)
+                return;
+            iBookManager.asBinder().unlinkToDeath(deathRecipient,0);
+            iBookManager = null;
+            Log.e("tao", "@@@@@@@@@@@         binderDied       ");
+        }
+    };
 }
