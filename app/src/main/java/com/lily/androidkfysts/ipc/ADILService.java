@@ -27,6 +27,12 @@ public class ADILService extends Service {
     private final IBookManager.Stub iBookManager = new IBookManager.Stub() {
         @Override
         public List<Book> getBookList() throws RemoteException {
+            try {
+                // 模拟超市操作
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             synchronized (this) {
                 Log.e("tao", TAG + " invoking getbookLists() method , now this is " + books.size());
                 if (books != null) {
@@ -69,6 +75,11 @@ public class ADILService extends Service {
 //            RemoteCallbackList<IOnNewBookReceivedListener> 方法
             listenerLists.register(listener);
 
+            // beginBroadcast() 和 finishBroadcast 必须配对使用否则会报错
+            Log.e("tao", "register listener size " + listenerLists.beginBroadcast() );
+            listenerLists.finishBroadcast();
+
+
 
         }
 
@@ -85,9 +96,9 @@ public class ADILService extends Service {
 
 //            RemoteCallbackList<IOnNewBookReceivedListener> 方法
             listenerLists.unregister(listener);
-            //            Log.e("tao", "register listener size " + listenerLists.size());
+                        Log.e("tao", "unregister listener size " + listenerLists.beginBroadcast());
 
-
+            listenerLists.finishBroadcast();
         }
     };
 

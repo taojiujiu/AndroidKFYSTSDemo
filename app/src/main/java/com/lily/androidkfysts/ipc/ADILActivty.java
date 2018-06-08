@@ -99,13 +99,20 @@ public class ADILActivty extends Activity implements View.OnClickListener {
                 unbind();
                 break;
             case R.id.get_lists:
-                if (iBookManager != null) {
-                    try {
-                        Log.e("tao", "lists is :" + iBookManager.getBookList().toString());
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
+                // 服务端如果是超时的操作就应该开启新的线程去工作
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (iBookManager != null) {
+                            try {
+                                Log.e("tao", "lists is :" + iBookManager.getBookList().toString());
+                            } catch (RemoteException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
-                }
+                }).start();
+
                 break;
             case R.id.add_book:
                 if (iBookManager != null) {
