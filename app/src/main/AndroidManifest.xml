@@ -9,27 +9,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--<activity android:name=".service.start.StartServiceActivity">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
+        <provider android:name=".contentprovider.BookProvider"
+                  android:authorities="com.lily.androidkfysts.book.provider"
+                  android:permission="com.lily.androidkfysts.PROVIDER"
+                  android:process=":provider"
 
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
+        />
+        <!--<activity android:name=".service.start.StartServiceActivity">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN"/>-->
+
+        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+        <!--</intent-filter>-->
         <!--</activity>-->
         <!--<activity android:name=".service.bind.BindServiceActivity">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN"/>-->
+
+        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+        <!--<activity android:name=".ipc.ADILActivty">-->
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN"/>-->
 
                 <!--<category android:name="android.intent.category.LAUNCHER"/>-->
             <!--</intent-filter>-->
         <!--</activity>-->
-        <activity android:name=".ipc.ADILActivty">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
         <!--<activity android:name=".service.messenger.MessengerActvity">-->
         <!--<intent-filter>-->
         <!--<action android:name="android.intent.action.MAIN"/>-->
@@ -37,6 +43,14 @@
         <!--<category android:name="android.intent.category.LAUNCHER"/>-->
         <!--</intent-filter>-->
         <!--</activity>-->
+
+        <activity android:name=".contentprovider.ProviderActivity">
+        <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+        </intent-filter>
+        </activity>
         <activity android:name=".service.bind.OtherActivity"/>
         <service android:name=".service.start.StartServiceDemo"/>
         <service android:name=".service.start.IntentServiceDemo"/>
