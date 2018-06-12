@@ -136,7 +136,7 @@ public class TCPClientActivity extends Activity implements View.OnClickListener 
                 final String msg = msgEdit.getText().toString();
                 if (!TextUtils.isEmpty(msg) && printWriter != null) {
                     printWriter.println(msg);
-                    msgEdit.setText("'");
+                    msgEdit.setText("");
                     String time = formatDataTime(System.currentTimeMillis());
                     final String showedMsg = "self " + time + " : " + msg + "\n";
                     messageContainer.setText(messageContainer.getText() + showedMsg);

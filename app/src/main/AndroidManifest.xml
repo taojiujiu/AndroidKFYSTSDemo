@@ -53,13 +53,21 @@
         <!--</intent-filter>-->
         <!--</activity>-->
 
-        <activity android:name=".socket.TCPClientActivity">
+        <!--<activity android:name=".socket.TCPClientActivity">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+        <activity android:name=".binder_pool.BinderPoolActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <!--<activity android:name="S=".ipc.ADILService"/>&ndash;&gt;-->
 
         <!--<service android:name=".ipc.ADILService"-->
@@ -67,7 +75,8 @@
         <!--</service>-->
         <!--<service android:name=".service.messenger.MessengerService"-->
         <!--android:process=":messenger"/>-->
-        <service android:name=".socket.TCPServerService"/>
+        <!--<service android:name=".socket.TCPServerService"/>-->
+        <service android:name=".binder_pool.BinderPoolService"/>
     </application>
 
 </manifest>
