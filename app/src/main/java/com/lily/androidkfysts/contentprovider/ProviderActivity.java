@@ -46,6 +46,5 @@ public class ProviderActivity extends Activity {
             Log.e("tao","ProviderActivity query user :"+ user.toString());
         }
         userCursor.close();
-
     }
 }

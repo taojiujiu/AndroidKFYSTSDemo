@@ -2,6 +2,9 @@
 <manifest package="com.lily.androidkfysts"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,9 +15,7 @@
         <provider android:name=".contentprovider.BookProvider"
                   android:authorities="com.lily.androidkfysts.book.provider"
                   android:permission="com.lily.androidkfysts.PROVIDER"
-                  android:process=":provider"
-
-        />
+                  android:process=":provider"/>
         <!--<activity android:name=".service.start.StartServiceActivity">-->
         <!--<intent-filter>-->
         <!--<action android:name="android.intent.action.MAIN"/>-->
@@ -44,25 +45,29 @@
         <!--</intent-filter>-->
         <!--</activity>-->
 
-        <activity android:name=".contentprovider.ProviderActivity">
-        <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
+        <!--<activity android:name=".contentprovider.ProviderActivity">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN"/>-->
 
-        <category android:name="android.intent.category.LAUNCHER"/>
-        </intent-filter>
+        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+
+        <activity android:name=".socket.TCPClientActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
-        <activity android:name=".service.bind.OtherActivity"/>
-        <service android:name=".service.start.StartServiceDemo"/>
-        <service android:name=".service.start.IntentServiceDemo"/>
-        <service android:name=".service.bind.BindService"/>
-        <!--<service android:name=".ipc.ADILService"/>-->
+        <!--<activity android:name="S=".ipc.ADILService"/>&ndash;&gt;-->
 
-        <service android:name=".ipc.ADILService"
-                 android:process=":aidl">
-        </service>
+        <!--<service android:name=".ipc.ADILService"-->
+                 <!--android:process=":aidl">-->
+        <!--</service>-->
         <!--<service android:name=".service.messenger.MessengerService"-->
-        android:process=":messenger"/>
-
+        <!--android:process=":messenger"/>-->
+        <service android:name=".socket.TCPServerService"/>
     </application>
 
 </manifest>
