@@ -9,6 +9,7 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,6 +61,7 @@ public class TCPClientActivity extends Activity implements View.OnClickListener 
         messageContainer = findViewById(R.id.msg_container);
         sendBtn = findViewById(R.id.send);
         msgEdit = findViewById(R.id.msg);
+        sendBtn.setOnClickListener(this);
 
         Intent service = new Intent(this, TCPServerService.class);
         startService(service);
@@ -92,6 +94,8 @@ public class TCPClientActivity extends Activity implements View.OnClickListener 
         while (socket == null) {
             try {
                 socket = new Socket("localhost", 8688);
+//                InetSocketAddress isa = new InetSocketAddress("localhost", 8688);
+//                socket.connect(isa,5000);
                 clientSocket = socket;
                 printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
                 handler.sendEmptyMessage(MESSAGE_SOCKET_CONNECTED);
@@ -127,6 +131,8 @@ public class TCPClientActivity extends Activity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.send:
+                System.out.println("send msg");
+                Log.e("tao","send msg");
                 final String msg = msgEdit.getText().toString();
                 if (!TextUtils.isEmpty(msg) && printWriter != null) {
                     printWriter.println(msg);

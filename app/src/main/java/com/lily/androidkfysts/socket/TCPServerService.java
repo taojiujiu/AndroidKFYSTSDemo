@@ -33,7 +33,7 @@ public class TCPServerService extends Service {
 
     @Override
     public void onCreate() {
-        new Thread(new TCPServer());
+        new Thread(new TCPServer()).start();
         super.onCreate();
     }
 
@@ -50,6 +50,8 @@ public class TCPServerService extends Service {
             ServerSocket serverSocket = null;
             try {
                 serverSocket = new ServerSocket(8688);
+                System.err.println("establish tcp server success,port 8688");
+
             } catch (IOException e) {
                 System.err.println("establish tcp server failed,port 8688");
                 e.printStackTrace();
