@@ -21,7 +21,7 @@ public class BinderPoolActivity extends Activity{
                 doWork();
             }
         }.start();
-// 耗时操作，如果不放在线程中， 则  BinderPoolManager 中的  CountDownLatch 将一直处于阻塞状态
+//        耗时操作，如果不放在线程中， 则  BinderPoolManager 中的  CountDownLatch 将一直处于阻塞状态
 //        doWork();
 
     }
@@ -48,7 +48,5 @@ public class BinderPoolActivity extends Activity{
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
-
     }
 }

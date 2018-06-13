@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -60,7 +61,9 @@
                 <!--<category android:name="android.intent.category.LAUNCHER"/>-->
             <!--</intent-filter>-->
         <!--</activity>-->
-        <activity android:name=".binder_pool.BinderPoolActivity">
+        <activity android:name=".binder_pool.BinderPoolActivity"
+                  >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -76,7 +79,8 @@
         <!--<service android:name=".service.messenger.MessengerService"-->
         <!--android:process=":messenger"/>-->
         <!--<service android:name=".socket.TCPServerService"/>-->
-        <service android:name=".binder_pool.BinderPoolService"/>
+        <service android:name=".binder_pool.BinderPoolService"
+        android:process="com.lily.androidkfysts.test"/>
     </application>
 
 </manifest>
